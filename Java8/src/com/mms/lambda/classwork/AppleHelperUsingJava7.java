@@ -2,6 +2,8 @@ package com.mms.lambda.classwork;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public class AppleHelperUsingJava7 {
 
@@ -43,6 +45,31 @@ public class AppleHelperUsingJava7 {
 
 		return filterAppleList;
 
+	}
+	
+	//generic method to filter anything
+	
+	public static <T> List<T> filterJava8(List<T>  appleList, Predicate<T> predicate)
+	{
+		List<T> resultList = new ArrayList<>();
+		for(T t : appleList)
+		{
+			if(predicate.test(t))
+			{
+				resultList.add(t);
+			}
+		}
+		return resultList;
+	}
+	
+	
+	public static <T> void printTypeName(List<T> appleList, Consumer<T> consumer)
+	{
+		for(T t: appleList)
+		{
+			consumer.accept(t);
+			
+		}
 	}
 
 }

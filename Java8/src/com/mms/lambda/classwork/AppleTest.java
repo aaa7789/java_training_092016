@@ -41,14 +41,8 @@ public class AppleTest {
 			
 			@Override
 			public boolean filter(Apple apple) {
-				
-				if("red".equals(apple.getColor()) && "peach".equals(apple.getType()))
-						{
-					      return true;
-						}
-				else
-					return false;
-				
+				return "red".equals(apple.getColor()) && "peach".equals(apple.getType());	
+							
 			}
 		});
 		
@@ -59,20 +53,47 @@ public class AppleTest {
 		//java8 lambda expressions
 		
 		List<Apple> redGalaApplesUsingJava8 = AppleHelperUsingJava7.filter(appleList,
-				(Apple apple) ->  {
-					
-					if("red".equals(apple.getColor()) && "peach".equals(apple.getType()))
-							{
-						      return true;
-							}
-					else
-						return false;
-					
-				}  );
+				(Apple apple) ->  "red".equals(apple.getColor()) && "peach".equals(apple.getType())  );
 		
 		System.out.println(" filter using java8" +redGalaApplesUsingJava8 );
 		
+		
+		List<Apple> redGalaApplesUsingJava8_2 = AppleHelperUsingJava7.filter(appleList,
+				 apple ->  "red".equals(apple.getColor()) && "peach".equals(apple.getType())  );
 
+		System.out.println(" filter using java8_2" +redGalaApplesUsingJava8_2 );
+		
+		
+		//java 7 using anonymous class
+		List<Apple> heavyApples = AppleHelperUsingJava7.filter(appleList, new AppleFilter() {
+			
+			@Override
+			public boolean filter(Apple apple) {
+				
+				return apple.getWeight() > 400;
+			}
+		});
+		System.out.println("heavy apples " + heavyApples);
+		
+		//using lamba
+		List<Apple> heavyApples8 = AppleHelperUsingJava7.filter(appleList, 
+				  (apple) -> apple.getWeight() > 400 &&  "orange".equals(apple.getColor()))  ;
+		
+		System.out.println("heavy apples using java8" + heavyApples8);
+		
+		//filter apples which are red gala and more than 100 in number
+		
+		List<Apple> filterUsingFunctional = AppleHelperUsingJava7.filterJava8(appleList, 
+				    (Apple apple ) -> ("red".equals(apple.getColor()) && "gala".equals(apple.getType()) && apple.getNumber() > 100) );
+		
+		System.out.println("using functional interface " + filterUsingFunctional);
+		
+		
+		AppleHelperUsingJava7.printTypeName(appleList,
+				(Apple apple) -> System.out.println("type of apple is " + apple.getType()));
+				
+			
+		
 
 	}
 
