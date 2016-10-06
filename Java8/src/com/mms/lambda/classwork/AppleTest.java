@@ -91,6 +91,9 @@ public class AppleTest {
 		
 		AppleHelperUsingJava7.printTypeName(appleList,
 				(Apple apple) -> System.out.println("type of apple is " + apple.getType()));
+		
+		
+		AppleHelperUsingJava7.printTypeName(appleList,  Apple:: getType);
 				
 			
 		
