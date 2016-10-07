@@ -1,6 +1,6 @@
 package com.mms.java8.streams.classwork;
 
-public class Dish {
+public class Dish  implements Comparable<Dish>{
 	private String name;
 	private boolean isVeggie;
 	private int colories;
@@ -50,6 +50,12 @@ public class Dish {
 	@Override
 	public String toString() {
 		return "Dish [name=" + name + ", isVeggie=" + isVeggie + ", colories=" + colories + ", type=" + type + "]";
+	}
+
+	@Override
+	public int compareTo(Dish o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 
