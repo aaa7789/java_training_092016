@@ -1,7 +1,11 @@
 package com.mms.java8.streams.classwork;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.Map;
+
 import static java.util.stream.Collectors.*;
 
 public class DishTest {
@@ -81,7 +85,7 @@ public class DishTest {
          List<String> topThreeVegies =  dishList.stream()
         		                      .filter(dish ->
         		                      {
-        		                    	  System.out.println("from filter method");
+        		                    	  System.out.println("from filter method" + dish.getType());
         		                    	return   "VEG".equals(dish.getType()); 
         		                      }
         		                      )
@@ -94,6 +98,59 @@ public class DishTest {
         		                      .collect(toList());
          
          System.out.println("top three vegie dishes " + topThreeVegies);
+         
+         
+         //wanna sort the list with calories asc
+         //  using java7
+         
+         System.out.println("before sorting " + dishList);
+         
+      /*   dishList.sort(new Comparator<Dish>() {
+
+			@Override
+			public int compare(Dish dish1, Dish dish2 ) {
+				
+				int res = 0;
+				if(dish1.getColories() > dish2.getColories())
+					res =1;
+				else
+					res = -1;
+				return res;
+			}
+        	 
+			
+		});*/
+         
+         
+         //using java8 and lambda
+       //  dishList.sort((dish1, dish2) -> Integer.valueOf(dish2.getColories()).compareTo(dish1.getColories()));
+         
+         //using streams
+         dishList.sort(Comparator.comparingInt(Dish :: getColories));
+         
+         System.out.println("sorted dishes " + dishList);
+         
+         //group by 
+         // select d.type from dish d group by (d.type)
+         
+   //using lambda
+         Map<String, List<Dish>>  dishMap =     dishList.stream()         
+                                           .collect(groupingBy(dish -> dish.getType()));
+    
+    //method reference
+    Map<String, List<Dish>>  dishMap2 =     dishList.stream()         
+            .collect(groupingBy(Dish :: getType));
+    
+    System.out.println(dishMap);
+    
+    //sum of calories of all dishes
+    
+    IntSummaryStatistics sumOfCol =   dishList.stream()
+    		         .collect(summarizingInt(Dish :: getColories));
+    
+    System.out.println("sum of colories of all Dishes  " + sumOfCol.getSum());
+    System.out.println("max colories in dishes " + sumOfCol.getMax());
+    System.out.println("average colories in dishes " + sumOfCol.getAverage());
 	
 
 	}
