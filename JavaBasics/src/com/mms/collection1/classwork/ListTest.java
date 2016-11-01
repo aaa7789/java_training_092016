@@ -16,6 +16,7 @@ public class ListTest {
 		  studentList.add(4);
 		  studentList.add(5);
 		  studentList.add(2);
+		  studentList.add("this");
 		  
 		  
 		  System.out.println(studentList);

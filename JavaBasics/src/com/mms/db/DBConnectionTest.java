@@ -18,7 +18,7 @@ public class DBConnectionTest {
 			Statement stmt = null;
 			ResultSet rs = null;
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/world", "rkomatr", "bittu1");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/world", "root", "bittu1");
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next())

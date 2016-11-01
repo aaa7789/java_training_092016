@@ -1,7 +1,7 @@
 package com.mms.thread1;
 
 public class MyDeadlock {
-
+//http://javarevisited.blogspot.com/2010/10/what-is-deadlock-in-java-how-to-fix-it.html
 	String str1 = "Java";
 	String str2 = "UNIX";
 
