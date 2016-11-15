@@ -15,12 +15,12 @@
 
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/training</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/sample</property>
         <property name="connection.username">root</property>
         <property name="connection.password">bittu1</property>
 
         <!-- JDBC connection pool (use the built-in) -->
-        <property name="connection.pool_size">1</property>
+        <property name="connection.pool_size">10</property>
 
         <!-- SQL dialect -->
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
@@ -31,10 +31,20 @@
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
 
-        <!-- Drop and re-create the database schema on startup   create  will create tables-->
+        <!-- Drop and re-create the database schema on startup   create  will create tables , update will updated the schema-->
         <property name="hbm2ddl.auto">create</property>
 
-        <mapping resource="com/mms/hibernate/basic/Event.hbm.xml"/>
+       <!--  <mapping resource="com/mms/hibernate/basic/Event.hbm.xml"/>
+         -->
+           <!-- Names the annotated entity class -->
+       <!--  <mapping class="com.mms.hibernate.annotations.Event"/>
+        <mapping class="com.mms.hibernate.annotations.School"/>
+        <mapping class="com.mms.hibernate.annotations.SchoolDetails"/> 
+        <mapping class="com.mms.hibernate.associations.Person"/>
+        <mapping class="com.mms.hibernate.associations.Phone"/>
+        -->
+        <mapping class="com.mms.hibernate.associations.Laptop"/>
+        <mapping class="com.mms.hibernate.associations.LaptopDetails"/>
 
     </session-factory>
 
