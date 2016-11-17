@@ -46,10 +46,34 @@ public class HibernateQueryTest {
 				System.out.println("retrieving data from DB for person:  " + curPerson.getName());
 			}
 			
+			
+			List<Object[]> persons = entityManager.createQuery(
+				    "select distinct pr, ph " +
+				    "from Person pr, Phone ph " +
+				    "where ph.person = pr and ph is not null", Object[].class)
+				.getResultList();
+			
+			for(Object currobj : persons)
+			{
+				System.out.println( "value of current object " +currobj);
+			}
+			
+			List<Person> personsSelf = entityManager.createQuery(
+				    "select distinct pr1 " +
+				    "from Person pr1, Person pr2 " +
+				    "where pr1.id <> pr2.id " +
+				    "  and pr1.address = pr2.address " +
+				    "  and pr1.createdOn < pr2.createdOn", Person.class )
+				.getResultList();
+			
+			
+			
+			
 			entityManager.getTransaction().commit();
 			entityManager.close();
 			
 			System.out.println("after saving in data base");
+			
 		}
 		catch(Exception ex)
 		{

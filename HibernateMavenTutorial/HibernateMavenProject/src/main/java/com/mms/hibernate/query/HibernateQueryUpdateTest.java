@@ -29,7 +29,8 @@ public class HibernateQueryUpdateTest {
 				+ " set p.name = :newName "
 				+ "where p.name = :oldName ").
 				setParameter("newName", "Neelima").
-				setParameter("oldName", "hari");
+				setParameter("oldName", "hari");	
+		  
 		
 		query2.executeUpdate();
 		
