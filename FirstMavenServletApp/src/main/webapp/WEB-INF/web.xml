@@ -1,0 +1,88 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  
+  <filter>
+	   <filter-name>AuditFilter</filter-name>
+	   <filter-class>com.mms.servlet.AuditFilter</filter-class>
+	   <init-param>
+	     <param-name>displayDate</param-name>
+	     <param-value>true</param-value>
+	   </init-param>
+  </filter>
+  
+  <filter-mapping>
+	  <filter-name>AuditFilter</filter-name>
+	  <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <servlet>
+   <servlet-name>helloServlet</servlet-name>
+   <servlet-class>com.mms.servlet.HelloServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+   <servlet-name>advancedServlet</servlet-name>
+   <servlet-class>com.mms.servlet.AdvancedServlet</servlet-class>
+   <init-param>
+     <param-name>defaultUser</param-name>
+     <param-value>John</param-value>
+   </init-param>
+  </servlet>
+  
+     <servlet>
+    	<servlet-name>errorHandler</servlet-name>
+    	<servlet-class>com.mms.servlet.ErrorHandler</servlet-class>
+    </servlet> 
+   
+   <servlet-mapping>
+     <servlet-name>helloServlet</servlet-name>
+     <url-pattern>/helloServletPath</url-pattern>     
+     
+   </servlet-mapping>
+   
+  
+   
+   <servlet-mapping>
+     <servlet-name>advancedServlet</servlet-name>
+     <url-pattern>/advancedServletPath</url-pattern>
+     
+   </servlet-mapping>
+   
+     <servlet-mapping>
+     <servlet-name>errorHandler</servlet-name>
+     <url-pattern>/ErrorHandler</url-pattern>   
+    </servlet-mapping> 
+    
+<servlet>
+ <servlet-name>initJsp</servlet-name>
+ <jsp-file>/initSample.jsp</jsp-file>
+  <init-param>
+   <param-name>defaultUser</param-name>
+   <param-value>hari</param-value>
+  </init-param>
+</servlet>
+
+<servlet-mapping>
+ <servlet-name>initJsp</servlet-name>
+ <url-pattern>/initSample.jsp</url-pattern>
+</servlet-mapping>
+   
+   <session-config>
+    <session-timeout>15</session-timeout>
+  </session-config>
+  
+  <error-page>
+    <error-code>404</error-code>
+    <location>/ErrorHandler</location>
+  </error-page>
+  
+  <error-page>
+	<exception-type>java.lang.Throwable</exception-type >
+	<location>/ErrorHandler</location>
+</error-page>
+  
+</web-app>
