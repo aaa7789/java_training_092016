@@ -70,6 +70,16 @@
  <servlet-name>initJsp</servlet-name>
  <url-pattern>/initSample.jsp</url-pattern>
 </servlet-mapping>
+
+<servlet>
+ <servlet-name>loginServlet</servlet-name>
+ <servlet-class>com.mms.servlet.LoginServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+ <servlet-name>loginServlet</servlet-name>
+ <url-pattern>/login</url-pattern>
+</servlet-mapping>
    
    <session-config>
     <session-timeout>15</session-timeout>

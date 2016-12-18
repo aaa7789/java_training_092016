@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+      <property name="locations" value="restaurant.properties"/>
+   </bean>
+   
+   
+   <bean id="vehicle" class="com.mms.spring.SpringSampleProject.Car">       
+   </bean>
+   
+   <bean   name="indianRestaurant" class="com.mms.service.IndianRestaurant">
+      <property name="labourSupplier"  ref="labourSupplier" />
+      <property name="grocessoriesSupplier" ref="grocessoriesSupplier" />
+   </bean>
+   
+   <bean name="labourSupplier " class="com.mms.dao.LabourSupplier">
+      <property name="hourlyRate"  value="${labour.hourtlyRate}" />
+      <property name="numberOfLabour"  value="${labour.number}" />
+   </bean>
+   
+    <bean name="grocessoriesSupplier " class="com.mms.dao.GrocessoriesSupplier">
+     <property name="vegitables">
+       <list>
+          <value>tamototo</value>
+          <value>Potato</value>
+       </list>
+     </property>
+     
+   </bean>
+   
+   <bean id="PersonDao" class="com.mms.dao.impl.PersonDaoImpl">
+      <property name="dataSource"  ref="dataSource"/>
+   </bean>
+   
+ <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+</bean>
+   
+   
+
+</beans>
