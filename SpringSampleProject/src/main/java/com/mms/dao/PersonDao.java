@@ -10,5 +10,6 @@ public interface PersonDao {
 	public String getNickName(String name);
 	public List<String> getMatchingPersons(String name);
 	public Person getPersonDtls(String name);
+	public int insertPersons(List<Person> personList);
 
 }

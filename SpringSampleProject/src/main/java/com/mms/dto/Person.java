@@ -11,6 +11,20 @@ public class Person {
 	private String nickName;
 	private int version;
 	
+	public Person(int id, String address, String name, String nickName, int version)
+	{
+		this.id = id;
+		this.address = address;
+		this.name = name;
+		this.nickName = nickName;
+		this.version = version;
+	}
+	
+	public Person()
+	{
+		
+	}
+	
 	
 	public int getId() {
 		return id;

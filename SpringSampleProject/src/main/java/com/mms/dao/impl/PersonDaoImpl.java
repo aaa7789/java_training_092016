@@ -1,9 +1,12 @@
 package com.mms.dao.impl;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.mms.dao.PersonDao;
@@ -18,6 +21,10 @@ public class PersonDaoImpl implements PersonDao {
 			   + " where p.name=?";
 	
 	private String personDtlSql = "select * from jpa_db.person p where p.name= ? ";
+	
+	private String insertPersonsSql = "INSERT INTO `jpa_db`.`person`"
+			+ " (`id`,`address`,`name`,`nickName`,`version`)"
+			+ "VALUES(?, ?, ?, ?, ?)";
 
 	public int getCountOfPersons() {
 		
@@ -52,6 +59,31 @@ public class PersonDaoImpl implements PersonDao {
 	public void setDataSource(DataSource dataSource)
 	{
 		jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+
+	public int insertPersons(final List<Person> personList) {
+		
+		jdbcTemplate.batchUpdate(insertPersonsSql, new  BatchPreparedStatementSetter() {
+			
+			public void setValues(PreparedStatement ps, int i) throws SQLException {
+				ps.setInt(1, personList.get(i).getId());
+				ps.setString(2, personList.get(i).getAddress());
+				ps.setString(3, personList.get(i).getName());
+				ps.setString(4, personList.get(i).getNickName());
+				ps.setInt(5, personList.get(i).getVersion());
+				
+			}
+			
+			public int getBatchSize() {
+				// TODO Auto-generated method stub
+				return personList.size();
+			}
+		});
+		return personList.size();
 	}
 	
 
