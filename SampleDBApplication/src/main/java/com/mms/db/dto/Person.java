@@ -1,43 +1,48 @@
-package com.mms.dto;
+package com.mms.db.dto;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
-@Table(name="person")
+@Table(name = "person")
 public class Person {
 	@Id
-	private int id;
+	private Long id;
 	
+	@Column(name="address")
 	private String address;
 	
-	private Date createdOn;
+	@Column(name="createdOn")
+	private Date created_on;
+	
+	@Column(name="name")
 	private String name;
-	private String nickName;
+	
+	@Column(name="version")
 	private int version;
 	
-	public Person(int id, String address, String name, String nickName, int version)
-	{
-		this.id = id;
-		this.address = address;
-		this.name = name;
-		this.nickName = nickName;
-		this.version = version;
-	}
-	
-	public Person()
+ 	public Person()
 	{
 		
 	}
+	public Person(int id, String address, String name, int version)
+	{
+		this.id= (long) id;
+		this.address = address;
+		this.name = name;
+		this.version = version;
+		
+	}
 	
-	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getAddress() {
@@ -46,23 +51,17 @@ public class Person {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Date getCreatedOn() {
-		return createdOn;
+	public Date getCreated_on() {
+		return created_on;
 	}
-	public void setCreatedOn(Date createdOn) {
-		this.createdOn = createdOn;
+	public void setCreated_on(Date created_on) {
+		this.created_on = created_on;
 	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getNickName() {
-		return nickName;
-	}
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
 	}
 	public int getVersion() {
 		return version;
@@ -72,10 +71,8 @@ public class Person {
 	}
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", address=" + address + ", createdOn=" + createdOn + ", name=" + name
-				+ ", nickName=" + nickName + ", version=" + version + "]";
+		return "Person [id=" + id + ", address=" + address + ", created_on=" + created_on + ", name=" + name
+				+ ", version=" + version + "]";
 	}
-	
-	
 
 }

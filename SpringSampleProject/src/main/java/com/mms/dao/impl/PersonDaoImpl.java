@@ -56,14 +56,7 @@ public class PersonDaoImpl implements PersonDao {
 		
 	}
 	
-	public void setDataSource(DataSource dataSource)
-	{
-		jdbcTemplate = new JdbcTemplate(dataSource);
-	}
 
-	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
 
 	public int insertPersons(final List<Person> personList) {
 		
@@ -84,6 +77,15 @@ public class PersonDaoImpl implements PersonDao {
 			}
 		});
 		return personList.size();
+	}
+	
+	public void setDataSource(DataSource dataSource)
+	{
+		jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
 	}
 	
 

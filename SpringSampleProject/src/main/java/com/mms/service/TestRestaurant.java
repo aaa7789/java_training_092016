@@ -8,6 +8,8 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import com.mms.dao.EventDao;
 import com.mms.dao.PersonDao;
+import com.mms.dao.impl.PersonHibernateDaoImpl;
+import com.mms.dao.impl.PersonHibernateSpringDaoImpl;
 import com.mms.dto.Event;
 import com.mms.dto.Person;
 
@@ -45,7 +47,7 @@ public class TestRestaurant {
 		}
 		
 		
-		Person srujana = new Person(21, "NJ","srujana", "srujana", 3);
+		/*Person srujana = new Person(21, "NJ","srujana", "srujana", 3);
 		Person neelima = new Person(22, "NJ","neelima", "neelima", 3);
 		Person raju = new Person(23, "NJ","raju", "raju", 3);
 		Person bittu = new Person(24, "NJ","bittu", "bittu", 3);
@@ -58,8 +60,17 @@ public class TestRestaurant {
 		
 		int numInserted = dao.insertPersons(personList);
 		
-		System.out.println("number of persons inserted in DB " + numInserted);
+		System.out.println("number of persons inserted in DB " + numInserted);*/
+		
+		PersonHibernateDaoImpl dao3 = context.getBean("personHibernateDaoImpl", PersonHibernateDaoImpl.class);
+	int numPersons = 	dao3.getCountOfPersons();
 	
+	System.out.println("spring hibernate cnt of persons "+ numPersons);
+	
+	PersonHibernateSpringDaoImpl dao4 = context.getBean("personHibernateSpringDaoImpl", PersonHibernateSpringDaoImpl.class);
+	int cntPer = dao4.getCountOfPersons();
+	String nickName = dao4.getNickName("hari");
+	System.out.println("count of people using hibernateTemplate " + cntPer  + "and nick name is " + nickName);
 		
 		System.out.println("finished processing");
 
