@@ -12,7 +12,7 @@ public class TestPersonService {
 	public static void main(String args[])
 	{
 		ApplicationContext context = new 
-				FileSystemXmlApplicationContext("C:\\practice\\java_training\\201609_batch\\workspace\\SampleDBApplication\\applicationContext.xml");
+				FileSystemXmlApplicationContext("C:\\practice\\java_training\\201609_batch\\repository\\SampleDBApplication\\applicationContext.xml");
 		PersonService service =  context.getBean("personService", PersonService.class);
 		
 		  Person person = service.getPersonDetails("chris");

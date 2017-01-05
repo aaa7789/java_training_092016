@@ -6,8 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.stereotype.Repository;
+
 import com.mms.db.dto.Person;
 
+@Repository
 public class SimpleJavaPersonDaoImpl implements PersonDao {
 	
 	private String sql = "SELECT * FROM jpa_db.person p where p.name = 'chris'";

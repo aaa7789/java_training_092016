@@ -8,11 +8,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.springframework.stereotype.Repository;
 
 import com.mms.db.dto.Person;
 
-
-public class SimpleHibernatePersonDaoImpl implements PersonDao {
+@Repository
+public class SimpleHibernatePersonDaoImpl implements PersonDao {	
 	private static SessionFactory sessionFactory;
 
 	public Person getPersonDtls(String name) {

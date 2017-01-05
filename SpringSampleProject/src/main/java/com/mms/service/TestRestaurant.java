@@ -10,6 +10,7 @@ import com.mms.dao.EventDao;
 import com.mms.dao.PersonDao;
 import com.mms.dao.impl.PersonHibernateDaoImpl;
 import com.mms.dao.impl.PersonHibernateSpringDaoImpl;
+import com.mms.dao.impl.PersonSpringHibenrateSessionDaoImpl;
 import com.mms.dto.Event;
 import com.mms.dto.Person;
 
@@ -71,6 +72,12 @@ public class TestRestaurant {
 	int cntPer = dao4.getCountOfPersons();
 	String nickName = dao4.getNickName("hari");
 	System.out.println("count of people using hibernateTemplate " + cntPer  + "and nick name is " + nickName);
+	
+	
+	PersonSpringHibenrateSessionDaoImpl sessionImpl = 
+			context.getBean("personSpringHibenrateSessionDaoImpl", PersonSpringHibenrateSessionDaoImpl.class);
+	
+	List<Person> personList = sessionImpl.getPersonDtls();
 		
 		System.out.println("finished processing");
 
