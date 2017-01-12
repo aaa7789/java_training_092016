@@ -1,8 +1,14 @@
 package com.mms.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +28,16 @@ public class StudentInfoController {
 		ModelAndView model = new ModelAndView("StudentDetails");
 		model.addObject("msg", "Please provide your details for Admisson");
 		return model;
+	}
+	
+	@InitBinder
+	public void dataBinder(WebDataBinder binder)
+	{
+	  SimpleDateFormat format = new SimpleDateFormat("MM*dd*yyyy");
+	  binder.registerCustomEditor(Date.class, "submissionDate", new CustomDateEditor(format, false));
+	  binder.registerCustomEditor(String.class, "city", new CityNameCustomEditor());
+		
+		
 	}
 	
 /*	
@@ -54,8 +70,13 @@ public class StudentInfoController {
 	}
 	
 	@RequestMapping(value="/enrollmentStatus", method=RequestMethod.POST)
-	public ModelAndView  enrollementStatusByModelAttribut(@ModelAttribute(name="student1") Student student)
+	public ModelAndView  enrollementStatusByModelAttribut(@ModelAttribute(name="student1") Student student, BindingResult result)
 	{
+		if(result.hasErrors())
+		{
+			ModelAndView model = new ModelAndView("StudentDetails");
+			return model;
+		}
 		ModelAndView model = new ModelAndView("StudentEnrollment");
 		model.addObject("msg", "Enrollment success for studetn");
 		return model;
@@ -63,9 +84,9 @@ public class StudentInfoController {
 	}
 	
 	
-	
-/*	@RequestMapping(value="/enrollmentStatus/{user}/{city}/{state}", method=RequestMethod.GET)
-	public ModelAndView  enrollementByPathParam( @PathVariable Map input)
+/*	
+	@RequestMapping(value="/enrollmentStatus/{user}/{city}/{state}", method=RequestMethod.GET)
+	public ModelAndView  enrollementByPathParam( @PathVariable Map<String, String> input)
 	{
 		String name = (String) input.get("user");
 		String city = (String) input.get("city");

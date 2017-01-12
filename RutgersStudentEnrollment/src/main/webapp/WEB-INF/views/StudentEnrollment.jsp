@@ -16,6 +16,9 @@
  <h2>  street:  ${student1.street}  </h2> 
  <h2>  city:   ${student1.city}  </h2>
  <h2>  state:   ${student1.state}  </h2> 
+ <h2>  zip code:   ${student1.zipcode}  </h2> 
+ <h2>  Submission Date:   ${student1.submissionDate}  </h2> 
+ <h2>  subjects selected:   ${student1.subjects}  </h2> 
 
 
 </body>

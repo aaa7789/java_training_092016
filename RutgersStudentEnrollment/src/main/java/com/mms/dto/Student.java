@@ -1,11 +1,17 @@
 package com.mms.dto;
 
+import java.util.Date;
+import java.util.List;
+
 public class Student {
 
 	private String studentName;
 	private String street;
 	private String city;
 	private String state;
+	private int zipcode;
+	private Date submissionDate;
+	private List<String> subjects;
 	
 	
 	public String getStudentName() {
@@ -31,5 +37,23 @@ public class Student {
 	}
 	public void setState(String state) {
 		this.state = state;
+	}
+	public int getZipcode() {
+		return zipcode;
+	}
+	public void setZipcode(int zipcode) {
+		this.zipcode = zipcode;
+	}
+	public Date getSubmissionDate() {
+		return submissionDate;
+	}
+	public void setSubmissionDate(Date submissionDate) {
+		this.submissionDate = submissionDate;
+	}
+	public List<String> getSubjects() {
+		return subjects;
+	}
+	public void setSubjects(List<String> subjects) {
+		this.subjects = subjects;
 	}
 }
