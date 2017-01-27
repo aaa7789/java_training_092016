@@ -21,6 +21,29 @@ public class CourseService {
 		
 		return coureList;
 	}
+
+
+	public void saveCourse(Course course) {
+		
+		coureList.add(course);
+		System.out.println(coureList.toString());
+	}
+
+
+	public void updateCourse(Course course, String id) {
+		for(int i=0; i< coureList.size(); i++)
+		{
+			Course currCourse = coureList.get(i);
+			if(currCourse.getId().equalsIgnoreCase(id))
+			{
+				coureList.set(i, currCourse);
+				System.out.println(coureList.toString());
+				
+			}
+			
+		}
+		
+	}
 	
 
 
