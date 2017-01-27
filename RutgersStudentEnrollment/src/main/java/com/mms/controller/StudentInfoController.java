@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -70,7 +72,7 @@ public class StudentInfoController {
 	}
 	
 	@RequestMapping(value="/enrollmentStatus", method=RequestMethod.POST)
-	public ModelAndView  enrollementStatusByModelAttribut(@ModelAttribute(name="student1") Student student, BindingResult result)
+	public ModelAndView  enrollementStatusByModelAttribut(@Valid @ModelAttribute(name="student1") Student student, BindingResult result)
 	{
 		if(result.hasErrors())
 		{
