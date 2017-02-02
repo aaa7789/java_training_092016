@@ -9,6 +9,7 @@ public class Address {
 	private String country;
 	
 	
+	
 	public int getAddressId() {
 		return addressId;
 	}
@@ -44,6 +45,11 @@ public class Address {
 	}
 	public void setCountry(String country) {
 		this.country = country;
+	}
+	@Override
+	public String toString() {
+		return "Address [addressId=" + addressId + ", stree=" + stree + ", city=" + city + ", state=" + state
+				+ ", zipCode=" + zipCode + ", country=" + country + "]";
 	}
 	
 
