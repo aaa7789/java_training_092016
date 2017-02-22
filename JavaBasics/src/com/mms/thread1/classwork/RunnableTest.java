@@ -4,6 +4,7 @@ public class RunnableTest {
 
 	public static void main(String[] args) {
 		SampleRunnable runnable = new SampleRunnable("Thread1");
+		
 		Thread t1 = new Thread(runnable);
 		t1.start();
 		

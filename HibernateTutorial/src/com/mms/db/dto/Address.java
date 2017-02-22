@@ -1,12 +1,16 @@
 package com.mms.db.dto;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable{
 	private int addressId;
 	private String stree;
 	private String city;
 	private String state;
 	private int zipCode;
 	private String country;
+	private transient   int ssn;
+	private volatile int count;
 	
 	
 	public int getAddressId() {

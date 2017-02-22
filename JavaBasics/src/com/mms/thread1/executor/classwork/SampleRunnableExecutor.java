@@ -17,7 +17,7 @@ public class SampleRunnableExecutor {
 
 		for (int i = 0; i < 100; i++) {
 			String fileName = "file" + i;
-			String threaName = "thread" + i;
+			String threaName = "fileName" + i;
 			inFile = new FileProcessor(fileName, 10, false, threaName);
 			MyRunnable helper1 = new MyRunnable(inFile);
 			Thread t1 = new Thread(helper1);
@@ -33,6 +33,7 @@ public class SampleRunnableExecutor {
 		long stattime2 = System.currentTimeMillis();
 		
 		ExecutorService  service = Executors.newFixedThreadPool(10);
+		
 		for (int i = 0; i < 100; i++) {
 			String fileName = "file" + i;
 			String threaName = "thread" + i;
